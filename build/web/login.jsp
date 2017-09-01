@@ -1,10 +1,3 @@
-<%
-    if (session.getAttribute("objUserCon") != null) {
-        response.sendRedirect("home.jsp");
-    } else {
-
-%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,67 +16,82 @@
 
         <title>Login - Peliculas</title>
     </head>
+    <%
+        if (session.getAttribute("objUserCon") != null) {
+            
+            response.sendRedirect("home.jsp");
+        } else {
+            if (session.getAttribute("msjErrorLogin") != null) {
+
+    %>
+    <script>
+        $(document).ready(function () {
+            Materialize.toast('<%=session.getAttribute("msjErrorLogin")%>', 5000, "red");
+        });
+
+    </script>
+
+    <%
+            session.removeAttribute("msjErrorLogin");
+        }
+    %>
+    <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
     <body class="">
-        <div class="container green">
+        <img src="http://3.bp.blogspot.com/-_P0GOCwooXo/V_3xRg_leuI/AAAAAAAAAFo/UqPKOHAbb6gHgheGEo6_273XwRQBnVmnACK4B/s752/logo-light.png" height="50px;">
+        <div class="containerLogin">
             <br>
-            <h2 class="center  lime-text darken-4"><strong>Sistema Administación Peliculas</strong></h2>
-            <div class=" card-panel" style="margin-top:10%;background: rgba(238, 238, 238, 0.5);">
+
+            <div class=" card-panel" style="background: rgba(238, 238, 238, 0.8);">
                 <div class="row">
-                    <div class="col l12 center"><h5 style="font-weight: bold;">Login<br>Ingrese sus credenciales para acceder</h5> <hr></div>  
+                    <div class="col l12"><h3 style="font-weight: bold;">Iniciar Sesión</h3> <hr></div>  
 
                 </div>
                 <div class="row">
                     <form class="col s12" action="./loginServlet" method="POST" id="frmLogin">
-                        <div class="col l2 center"></div>  
-                        <div class="col l8 center">
-                            <div class="row">
-                                <div class="input-field col s2">
-                                </div>
+                        <div class="row">
 
-                                <div class="input-field col s8">
-                                    <i class="material-icons prefix">account_circle</i>
-                                    <input id="usuarioQl" name="usuarioQl" type="text" class="validate">
-                                    <label for="icon_prefix">First Name</label>
-                                </div>
-                                <div class="input-field col s2">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="input-field col s2">
-                                </div>
-
-                                <div class="input-field col s8">
-                                    <i class="material-icons prefix">phone</i>
-                                    <input id="contraQl" name="contraQl" type="password" class="validate">
-                                    <label for="icon_telephone">Telephone</label>
-                                </div>
-                                <div class="input-field col s2">
-                                </div>
+                            <div class="col l12 center">
+                                <div class="row">
 
 
-                            </div>
-                            <div class="row">
-                                <div class="col l4 center">
-                                    <!-- <a class="btn-large green waves-effect waves-light" href="ingresoVenta.jsp">Ingreso Venta</a>
-                                    --> </div>
-                                <div class="col l4 center">
-                                    <a class="btn-large green waves-effect waves-light" id="ingresar">Ingresar</a>
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix">account_circle</i>
+                                        <input id="usuarioQl" name="usuarioQl" type="text" class="validate">
+                                        <label for="icon_prefix">Username</label>
+                                    </div>
 
                                 </div>
-                                <div class="col l4 center">
-                                    <!--<a class="btn-large orange waves-effect waves-light " href="listadoVenta.jsp">Listado Venta</a>
-                                    -->
+                                <div class="row">
+
+
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix">vpn_key</i>
+                                        <input id="contraQl" name="contraQl" type="password" class="validate">
+                                        <label for="icon_telephone">Password</label>
+                                    </div>
+
+
+
                                 </div>
+                                <div class="row">
 
-                            </div>
-                        </div>  
-                        <div class="col l2 center"></div>  
+                                    <div class="input-field col s12">
+                                        <a class="btn-large green waves-effect waves-light" style="width:100%;" id="ingresar">Ingresar</a>
 
+                                    </div>
+
+
+                                </div>
+                            </div>  
+
+
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
-     
+
     </body>
 </html>
 
@@ -94,6 +102,21 @@
         });
     });
 </script>
+<style>
+    body{
+        background-image: url("https://k32.kn3.net/taringa/0/0/4/A/F/2/TZSFTW/1A1.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 100%;
+        width: 100%;
+    }
+    .containerLogin{
+        width: 35%;
+        margin: 0 auto;
+    }
+    /* label focus color */
+
+</style>
 
 <%    }
 %>

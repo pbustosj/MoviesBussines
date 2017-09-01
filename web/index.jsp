@@ -8,7 +8,7 @@
   <%
     if(session.getAttribute("listaUsuarios")==null){
          LinkedList<Usuario> listaUsuarios =  new LinkedList<Usuario>();
-         listaUsuarios.add(new Usuario(1, "admin", "123"));
+         listaUsuarios.add(new Usuario(1, "admin", "123",true));
          session.setAttribute("listaUsuarios", listaUsuarios);
     }  
     if (session.getAttribute("objUserCon")!= null) {
